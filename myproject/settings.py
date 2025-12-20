@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-mbn8rh31xb+7_zejy388a7gltv#&s(54#154r0&t*6mm07=_du
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['daniel-policy-system.zeabur.app', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -120,3 +120,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://daniel-policy-system.zeabur.app']
