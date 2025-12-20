@@ -1,22 +1,31 @@
-"""
-URL configuration for myproject project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+# 這是你的美化首頁
+def home(request):
+    return HttpResponse("""
+        <body style='font-family:sans-serif; text-align:center; padding-top:100px; background:#f0f2f5;'>
+            <h1 style='color:#1a73e8; font-size: 3em;'>🛡️ 智能保單管理系統</h1>
+            <p style='font-size: 1.2em; color: #555;'>您的專屬期末專案開發環境</p>
+            <hr style='width: 50%; border: 1px solid #ddd; margin: 30px auto;'>
+            <div style='margin: 20px;'>
+                <a href='/admin' style='display:inline-block; padding:15px 30px; background:#1a73e8; color:white; text-decoration:none; border-radius:5px; font-weight:bold;'>進入後台管理資料</a>
+            </div>
+            <div style='margin-top:50px; color:#888;'>製作人：您的姓名</div>
+        </body>
+    """)
+
+# 這是幫你在雲端自動建立管理員的捷徑
+def setup_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@example.com', '密碼123')
+        return HttpResponse("雲端管理員建立成功！帳號: admin / 密碼: 密碼123")
+    return HttpResponse("帳號已經存在囉！")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home),              # 首頁網址
+    path('setup/', setup_admin), # 建立帳號網址
 ]
