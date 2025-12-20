@@ -121,6 +121,16 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
+JAZZMIN_SETTINGS = {
+    "site_title": "保單管理系統",
+    "site_header": "保單管理",
+    "welcome_sign": "歡迎登入保單管理系統",
+    "copyright": "Daniel Policy System Ltd",
+    "search_model": ["policies.Policy"],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+}
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://daniel-policy-system.zeabur.app']
