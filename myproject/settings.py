@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['daniel-policy-system.zeabur.app', '127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
