@@ -130,6 +130,8 @@ JAZZMIN_SETTINGS = {
     "search_model": ["policies.Policy"],
     "show_sidebar": True,
     "navigation_expanded": True,
+    "use_google_fonts": True,
+    "show_ui_builder": True,
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
