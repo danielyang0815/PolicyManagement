@@ -138,12 +138,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://daniel-policy-system.zeabur.app']
 
-# 修復 Django 5.x 移除 length_is 導致的 Jazzmin 錯誤
-from django.template.defaultfilters import register
-@register.filter(name='length_is')
-def length_is(value, arg):
-    """回傳列表長度是否等於 arg (相容性補丁)"""
-    try:
-        return len(value) == int(arg)
-    except (ValueError, TypeError):
-        return False
