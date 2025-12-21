@@ -12,18 +12,18 @@ def length_is(value, arg):
 
 @admin.register(Policy)
 class PolicyAdmin(admin.ModelAdmin):
-    # 對齊 models.py 的欄位名稱
+    # 這是對齊 image_53bfcc.png 中定義的正確欄位名稱
     list_display = (
-        'client_name', 
-        'policy_id', 
-        'policy_type', 
-        'coverage_amount', 
+        'client_name',      # 不是 customer_name
+        'policy_id',        # 不是 policy_number
+        'policy_type',      # 不是 insurance_type
+        'coverage_amount',   # 不是 insurance_amount
         'start_date', 
         'status'
     )
     
-    # 加入搜尋功能 (搜尋客戶姓名或保單編號)
+    # 加入搜尋功能 (依據 client_name 或 policy_id)
     search_fields = ('client_name', 'policy_id')
     
-    # 加入右側篩選器 (依保險種類或狀態篩選)
+    # 加入右側篩選器
     list_filter = ('policy_type', 'status')
