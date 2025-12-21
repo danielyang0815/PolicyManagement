@@ -12,9 +12,9 @@ def length_is(value, arg):
 
 @admin.register(Policy)
 class PolicyAdmin(admin.ModelAdmin):
-    # 列表顯示欄位
-    list_display = ('customer_name', 'policy_number', 'insurance_type', 'insurance_amount', 'status')
-    # 加入搜尋框
-    search_fields = ('customer_name', 'policy_number')
-    # 加入右側篩選器
-    list_filter = ('insurance_type', 'status')
+    # 這裡只放 Django 預設一定有的欄位來測試，確保不會噴 E108 錯誤
+    # 如果你之後在 models.py 定義了新的欄位，再回來這裡加
+    list_display = ('id', '__str__') 
+    
+    # 暫時註解掉搜尋與篩選，等網站變綠燈再加
+    # search_fields = ('id',)
