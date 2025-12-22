@@ -28,4 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home),              # 首頁網址
     path('setup/', setup_admin), # 建立帳號網址
+    path('', views.policy_search, name='home'),
 ]
