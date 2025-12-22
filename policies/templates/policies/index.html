@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Daniel 保單服務入口</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 60px 0; }
+        .search-card { margin-top: -30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-light">
+    <section class="hero text-center">
+        <div class="container">
+            <h1>Daniel 保單管理系統 - 客戶查詢中心</h1>
+            <p>快速檢索您的個人保單狀態與保障內容</p>
+        </div>
+    </section>
 
+    <div class="container">
+        <div class="card search-card p-4 bg-white">
+            <form method="GET" action="/" class="row g-3">
+                <div class="col-md-9">
+                    <input type="text" name="q" class="form-control form-control-lg" placeholder="請輸入您的姓名或保單編號..." value="{{ query }}">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">立即查詢</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="mt-5">
+            <h3>查詢結果</h3>
+            <div class="table-responsive mt-3">
+                <table class="table table-hover align-middle">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>客戶姓名</th>
+                            <th>保單編號</th>
+                            <th>險種</th>
+                            <th>投保金額</th>
+                            <th>狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for policy in policies %}
+                        <tr>
+                            <td><strong>{{ policy.client_name }}</strong></td>
+                            <td>{{ policy.policy_id }}</td>
+                            <td>{{ policy.policy_type }}</td>
+                            <td>${{ policy.coverage_amount }}</td>
+                            <td><span class="badge {% if policy.status == '有效' %}bg-success{% else %}bg-secondary{% endif %}">{{ policy.status }}</span></td>
+                        </tr>
+                        {% empty %}
+                        <tr><td colspan="5" class="text-center">請輸入關鍵字開始查詢</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
