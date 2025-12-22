@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from policies import views
 
-# 這是你的美化首頁
+
 def home(request):
     return HttpResponse("""
         <body style='font-family:sans-serif; text-align:center; padding-top:100px; background:#f0f2f5;'>
@@ -17,7 +18,6 @@ def home(request):
         </body>
     """)
 
-# 這是幫你在雲端自動建立管理員的捷徑
 def setup_admin(request):
     if not User.objects.filter(username='admin').exists():
         User.objects.create_superuser('admin', 'admin@example.com', '密碼123')
@@ -26,7 +26,7 @@ def setup_admin(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),              # 首頁網址
-    path('setup/', setup_admin), # 建立帳號網址
+    path('', home),              
+    path('setup/', setup_admin), 
     path('', views.policy_search, name='home'),
 ]
