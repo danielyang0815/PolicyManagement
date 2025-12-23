@@ -138,3 +138,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://daniel-policy-system.zeabur.app']
 
+LOGIN_URL = '/admin/login/'
